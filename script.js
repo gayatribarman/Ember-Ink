@@ -1,5 +1,25 @@
 let books = JSON.parse(localStorage.getItem('emberAndInk')) || [];
 
+// Pre-loaded books if library is empty
+const preLoadedBooks = [
+  { title: "The Stranger", author: "Albert Camus", poem: "I opened myself to the gentle indifference of the world." },
+  { title: "The Metamorphosis", author: "Franz Kafka", poem: "I cannot make anyone understand what is happening inside me." },
+  { title: "Jane Eyre", author: "Charlotte Bronte", poem: "I am no bird and no net ensnares me. I am a free human being." },
+  { title: "Pride and Prejudice", author: "Jane Austen", poem: "It is a truth universally acknowledged that a single man must be in want of a wife." },
+  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", poem: "So we beat on, boats against the current, borne back ceaselessly into the past." },
+  { title: "Kafka on the Shore", author: "Haruki Murakami", poem: "When you come out of the storm, you won't be the same person who walked in." },
+  { title: "No Exit", author: "Jean-Paul Sartre", poem: "Hell is other people." },
+  { title: "Wuthering Heights", author: "Emily Bronte", poem: "Whatever our souls are made of, his and mine are the same." },
+  { title: "Crime and Punishment", author: "Fyodor Dostoevsky", poem: "Pain and suffering are always inevitable for a deep heart." },
+  { title: "The Picture of Dorian Gray", author: "Oscar Wilde", poem: "The only way to get rid of a temptation is to yield to it." }
+];
+
+// Only add pre-loaded books if localStorage is empty (first time user)
+if (books.length === 0) {
+  books = preLoadedBooks;
+  saveBooks();
+}
+
 function saveBooks() {
   localStorage.setItem('emberAndInk', JSON.stringify(books));
 }
